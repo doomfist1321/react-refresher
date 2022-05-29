@@ -11,7 +11,7 @@ export const Navigation = () => {
         <Link to='/' className='logo-container'><div><PandaLogo width={50} /></div></Link>
         <div className='nav-links-container'>
           <Link to='shop' className='nav-link'>SHOP</Link>
-          <Link to='sign-in' className='nav-link'>SIGN IN</Link>
+          <Link to='auth' className='nav-link'>SIGN IN</Link>
         </div>
       </div>
       <Outlet />
