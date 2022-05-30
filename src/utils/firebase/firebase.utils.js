@@ -1,5 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth';
 import { getFirestore, doc as getDocumentReference, getDoc, setDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -13,7 +21,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const furebaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 // Auth
 const googleProvider = new GoogleAuthProvider();
@@ -22,7 +30,6 @@ googleProvider.setCustomParameters({
 });
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 // Firestore
 export const db = getFirestore();
@@ -43,6 +50,15 @@ export const createUserDocumentFromAuth = async (userAuth, additionalProperties)
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if(!email || !password) return;
+  if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 }
+
+export const signInAuthUserWIthEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+}
+
+export const signOutUser = async () => await signOut(auth);
+
+export const registerAuthStateChangeListener = (callback) => onAuthStateChanged(auth, callback);
