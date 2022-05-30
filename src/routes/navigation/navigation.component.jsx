@@ -28,7 +28,6 @@ export const Navigation = () => {
         <div className='nav-links-container'>
           <CartIcon />
           <Link to='shop' className='nav-link'>SHOP</Link>
-          {/* We want to show sign out if the user is signed in */}
           {currentUser ? (<span className='nav-link' onClick={signOutHandler}>SIGN OUT</span>) : <Link to='auth' className='nav-link'>SIGN IN</Link>}
         </div>
         {cartIsOpen && <CartDropdown />}
