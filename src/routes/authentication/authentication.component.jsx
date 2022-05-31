@@ -7,7 +7,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils"
 
-import './authentication.styles.scss';
+import { AuthenticationContainer } from "./authentication.styles.jsx";
 
 export const Authentication = () => {
 
@@ -21,9 +21,9 @@ export const Authentication = () => {
   }, [])
 
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer className="authentication-container">
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   )
 }

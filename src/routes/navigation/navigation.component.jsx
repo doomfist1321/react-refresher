@@ -27,8 +27,8 @@ export const Navigation = () => {
         <LogoContainer to='/' ><div><PandaLogo width={50} /></div></LogoContainer>
         <NavLinksContainer>
           <CartIcon />
-          <NavLink as='span' to='shop'>SHOP</NavLink>
-          {currentUser ? (<NavLink  as='span' onClick={signOutHandler}>SIGN OUT</NavLink>) : <NavLink  as='span' to='auth' className='nav-link'>SIGN IN</NavLink>}
+          <NavLink to='shop'>SHOP</NavLink>
+          {currentUser ? (<NavLink onClick={signOutHandler}>SIGN OUT</NavLink>) : <NavLink to='auth' className='nav-link'>SIGN IN</NavLink>}
         </NavLinksContainer>
         {cartIsOpen && <CartDropdown />}
       </NavigationContainer>
