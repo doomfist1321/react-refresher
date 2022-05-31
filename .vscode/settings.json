@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "routing",
     "app",
-    "auth"
+    "auth",
+    "database"
   ]
 }

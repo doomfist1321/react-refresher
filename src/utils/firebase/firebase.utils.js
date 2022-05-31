@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut
 } from 'firebase/auth';
-import { collection, doc as getDocumentReference, getDoc, getFirestore, setDoc, writeBatch } from 'firebase/firestore';
+import { collection, doc as getDocumentReference, getDoc, getDocs, getFirestore, query, setDoc, writeBatch } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -69,4 +69,14 @@ export const addCollectionAndDocuments = async (collectionName, objectsToAdd) =>
   await writebatch.commit();
   console.log('batchwrite done');
 
+}
+
+export const generateCategoryMap = async () => {
+  const querySnapshot = await getDocs(query(collection(db, 'categories')));
+  const categoryMap = querySnapshot.docs.reduce((acc, doc) => {
+    const { title, items } = doc.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
 }
